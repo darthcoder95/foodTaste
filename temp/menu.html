@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="./main.css">
+    <script type="text/javascript" src="./menu.js"></script>
+<script type="text/javascript">
+var nav_status = false;
+
+var divs = {};
+
+var order = [];
+
+function highlightDiv(name) {
+    var $div = $("#" + name);
+    $div.toggleClass("highlight");
+    var regex = divs.name ? /Remove from/g : /Add to/g;
+    var txt = divs.name ? "Add to" : "Remove from";
+    var id = name + "button";
+    var button = document.getElementById(id);
+    button.innerHTML = button.innerHTML.replace(regex, txt);
+    $("#" + id).toggleClass("highlightButton");
+    divs.name = !divs.name;
+}
+
+function menuItemDiv(item) {
+    var strip = item.name.replace(/\s/g,'');
+    var idiv = "<div class=\"menuItem\" ";
+        idiv += "id=\"" + strip + "\">";
+        idiv += "<h4>" + item.name + "</h4>";
+        idiv += "<div class=\"itemDescription\">";
+        idiv += item.description + "</div>";
+        idiv += "<div class=\"orderButton\" onclick=\"";
+        idiv += "highlightDiv('" + strip + "');\" ";
+        idiv += "id=\"" + strip + "button\">";
+        idiv += "$" + item.price + " Add to Order</div></div>";
+    divs.strip = false;
+    return idiv;
+}
+
+function showNav() {
+    var nav_width = $(".nav").width();
+    var dt = 600;
+    if (nav_status) {
+        $(".nav").animate({marginLeft: "0"}, dt);
+        $(".container").animate({marginLeft: "0"}, dt);
+        $(".menubar").animate({left: "0"}, dt);
+        $(".hamburger").animate({left: "30px"}, dt);
+    }
+    else {
+        $(".nav").animate({marginLeft: nav_width + "px"}, dt);
+        $(".container").animate({marginLeft: nav_width + 20 + "px"}, dt);
+        $(".menubar").animate({left: nav_width + "px"}, dt);
+        $(".hamburger").animate({left: nav_width + 30 + "px"}, dt);
+    }
+    $(".navButton").toggleClass("hideButton");
+    nav_status = !nav_status;
+}
+
+
+$(document).ready(function() {
+    var courses = Object.keys(menu);
+    for (var c = 0; c < courses.length; c++) {
+        var cdiv = "<div class=\"course\">";
+        cdiv += "<h2>" + courses[c] + "</h2>";
+
+        var items = menu[courses[c]];
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            cdiv += menuItemDiv(item);
+        }
+
+        cdiv += "</div>";
+        $(".menu").append(cdiv);
+    }
+    $('#burger-icon').click(function(){
+        $(this).toggleClass('open');
+        showNav();
+    });
+});
+
+
+</script>
+    <title>Testaurant - Powered by FoodTaste</title>
+</head>
+<body>
+    <div class="nav noselect">
+        <a href="./payment.html">
+            <div class="navButton hideButton complete">Complete Order</div>
+        </a>
+        <div class="navButton hideButton">Cocktail Menu</div>
+        <div class="navButton hideButton">Wine List</div>
+        <div class="navButton hideButton">Filter Menu</div>
+        <div class="navButton hideButton">Restaurant Information</div>
+        <div class="navButton hideButton">Enter Credit Card Information</div>
+    </div>
+    <div class="container">
+        <div class="menubar noselect">
+            <div class="hamburger">
+                <div id="burger-icon">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+            </div>
+            Testaurant Menu
+        </div>
+        <div class="menu noselect"></div>
+    </div>
+</body>
+</html>
