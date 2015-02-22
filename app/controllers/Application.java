@@ -6,6 +6,7 @@ import play.*;
 import play.mvc.*;
 
 import views.html.*;
+import play.data.Form.*;
 
 public class Application extends Controller {
 
@@ -14,11 +15,19 @@ public class Application extends Controller {
     }
 
     public static Result menu() {
-            return ok(menu.render("Your new application is ready."));
+            return ok(menu.render("Menu"));
         }
 
+    public static Result location(){
 
+            return ok(location.render("Location"));
 
+    }
+    public static Result kitchen(){
+
+                return ok(kitchen.render("Kitchen"));
+
+        }
 
 }
 
