@@ -17,7 +17,7 @@
         overflow-y: hidden;
         overflow-x: hidden;
         font-family: 'VT323', monospace;
-        font-size: 120%;
+        font-size: 110%;
         margin: 0;
         height: 100%;
         color: #444;
@@ -44,6 +44,7 @@
     }
 
     .order {
+        position: relative;
         top: 0;
         display: inline-block;
         float: left;
@@ -60,6 +61,8 @@
     </style>
 
 <script type="text/javascript">
+
+    tables = []
 
     var orders = [
     {
@@ -100,7 +103,7 @@
         for (var j = 0; j < items.length; j++) {
             var item = items[j];
             divhtml += "<li><h4>" + item.name + "</h4>";
-            divhtml += item.details;
+            if (item.details) { divhtml += item.details; }
             divhtml += "</li>";
         }
         divhtml += "</ul>";
@@ -115,6 +118,11 @@
                 var offset = this.offsetTop + this.offsetHeight;
                 if (offset < (this.offsetHeight * 0.3)) {
                     $(this).remove();
+                    var num = parseInt(id[id.length - 1]);
+                    var ind = tables.indexOf(num);
+                    if (ind >= 0) {
+                        tables.splice(ind, 1);
+                    }
                 }
                 else {
                     $(this).offset({ top: 0 });
@@ -131,10 +139,63 @@
         }
     }
 
+    function makeRandomOrder() {
+        var magic = 4;
+        if (tables.length === magic) { return; }
+        var tab = Math.floor(Math.random() * magic) + 1;
+        while ($.inArray(tab, tables) >= 0) {
+            tab = Math.floor(Math.random() * magic) + 1;
+        }
+        tables.push(tab);
+        var order = {"table": tab, "people": null, "items": []};
+        var customers = Math.floor(Math.random() * 5) + 2;
+        order.people = customers;
 
+        var FOOD = ["Kansas City Sirloin Filet",
+                    "Buttermilk Fried Chicken",
+                    "Cedar Plank Salmon",
+                    "Shrimp And Grits",
+                    "Seared Scallops",
+                    "Seitan Pot Pie"];
+        var DONENESS = ["Medium",
+                        "Med Rare",
+                        "Rare"];
+        var THINGS = ["Extra Spicy",
+                      "No Salt",
+                      "Add side salad",
+                      null,
+                      null,
+                      null]
+
+        for (var i = 0; i < customers; i++) {
+            var food = {"name": null, "details": null}
+            var meal = Math.floor(Math.random() * FOOD.length);
+            food.name = FOOD[meal];
+            if (meal === 0) {
+                var customize = Math.floor(Math.random() * DONENESS.length);
+                food.details = DONENESS[customize];
+            }
+            else {
+                var customize = Math.floor(Math.random() * THINGS.length);
+                food.details = THINGS[customize];
+            }
+            order.items.push(food);
+        }
+
+        divhtml = makeOrderHTML(order);
+        $(".page").append(divhtml);
+
+        makeDraggable("table" + String(tab));
+        return;
+    }
 
     $(document).ready(function() {
-        parseOrders(orders);
+        makeRandomOrder();
+        var dt = 5000;
+        setInterval(function() {
+            makeRandomOrder();
+            dt = Math.floor(Math.random() * 10000) + 2000;
+        }, dt);
     });
 
     </script>
