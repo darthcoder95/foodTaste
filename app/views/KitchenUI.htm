@@ -11,66 +11,67 @@
 </head>
 <body>
 
-    <div class="everything"></div>
+    <div class="page"></div>
     <script type="text/javascript">
- 
+
     var orders = [
+    {
+        "table": "3",
+        "people": "2",
+        "items": [
         {
-            "table": "3",
-            "people": "2",
-            "items": [
-                {
-                    "name": "chicken",
-                    "details": "spicy"
-                },
-                {
-                    "name": "steak",
-                    "details": "med rare"
-            }]
-        }, 
+            "name": "chicken",
+            "details": "spicy"
+        },
         {
-            "table": "4",
-            "people": "5",
-            "items": [
-                {
-                    "name": "salmon",
-                    "details": "spicy"
-                },
-                {
-                    "name": "rice",
-                    "details": "steamed"
-            }]
-        }
+            "name": "steak",
+            "details": "med rare"
+        }]
+    },
+    {
+        "table": "4",
+        "people": "5",
+        "items": [
+        {
+            "name": "salmon",
+            "details": "spicy"
+        },
+        {
+            "name": "rice",
+            "details": "steamed"
+        }]
+    }
     ];
- 
+
     function parseOrders(orderList) {
 
         for (var i = 0; i < orderList.length; i++) {
-           	var o = orderList[i];
-	       	var table_list = o.table;
-	     	var people_list = o.people;
-	     	var divhtml1 = "<div class=\"table\"><h1>";
-          	divhtml1 += table_list +=  "</h1></div>";
-          	$(".everything").append(divhtml1);
+            var o = orderList[i];
+            var table_list = o.table;
+            var people_list = o.people;
+
+            var divhtml1 = "<div class=\"table\"><h1>";
+            divhtml1 += table_list +=  "</h1></div>";
+            $(".page").append(divhtml1);
 
             var divhtml2 = "<div class=\"people\"><h2>";
-          	divhtml2 += people_list += "</h2></div>";
-            $(".everything").append(divhtml2);
-	
-           	var item_list = o["items"];
-           	for (var j = 0; j < item_list.length; j++) {
-               	var item = item_list[j];
-               	var divhtml3 = "<div class=\"items\"><h3>";
- 	           	divhtml3 += item.name + "</h3><h4>";
+            divhtml2 += people_list += "</h2></div>";
+            $(".page").append(divhtml2);
+
+            var item_list = o["items"];
+            for (var j = 0; j < item_list.length; j++) {
+                var item = item_list[j];
+                var divhtml3 = "<div class=\"items\"><h3>";
+                divhtml3 += item.name + "</h3><h4>";
                 divhtml3 += item.details += "</h4></div>";
-                $(".everything").append(divhtml3);
-                
+                $(".page").append(divhtml3);
+
             }
         }
     }
     parseOrders(orders);
 
-</script>
+    </script>
 </body>
- 
+
 </html>
