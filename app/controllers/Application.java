@@ -17,4 +17,8 @@ public class Application extends Controller {
             return ok(menu.render("Your new application is ready."));
         }
 
+
+
+
 }
+
