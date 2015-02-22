@@ -11,7 +11,7 @@ import play.data.Form.*;
 public class Application extends Controller {
 
     public static Result index() {
-        return ok(index.render("Your new application is ready."));
+        return ok(index.render("Home"));
     }
 
     public static Result menu() {
@@ -28,6 +28,11 @@ public class Application extends Controller {
                 return ok(kitchen.render("Kitchen"));
 
         }
+    public static Result payment(){
+
+                return ok(payment.render("Payment"));
+
+    }
 
 }
 

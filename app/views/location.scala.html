@@ -4,24 +4,37 @@
 
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
 
-    <meta charset="UTF-8">
-    <title></title>
+    <style>
+        #map-canvas {
+            width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+        function initialize() {
+            var mapCanvas = document.getElementById('map-canvas');
+            var mapOptions = {
+                center: new google.maps.LatLng(39.957374, -75.187916),
+                zoom: 8,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            var map = new google.maps.Map(mapCanvas, mapOptions)
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+
+    </script>
+
 </head>
-<body background="/public/images/restaurantbg.jpg">
-
-
-<br>
-<em>Mon to Fri</em>
-: 9:30 AM - 11:30 PM
-<br>
-Sat & Sun: 10:00 AM - 1:00 AM
-<br>
-
-
-
+<body>
+<div id="map-canvas"></div>
 </body>
 </html>
+
 
 }

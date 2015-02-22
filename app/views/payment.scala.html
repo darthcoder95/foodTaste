@@ -1,0 +1,77 @@
+@(message : String)
+
+@main("Welcome to play"){
+
+
+<html>
+<head>
+    <style>
+     body {
+         background-color: red; 
+        background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+        background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+     }</style>
+<title>Payment</title>
+
+</head>
+<body>
+    <section>
+    <form id=payment>
+        <fieldset>
+            <ol>
+                    <label for=name>Name</label>
+
+                    <input id=name name=name type=text placeholder="First Last name" required autofocus />
+               
+                    <label for=email>Email</label>
+                    <input id=email name=email type=email placeholder="userid&#64;domain.com" required />
+                
+                    <label for=phone>Phone</label>
+                    <input id=phone name=phone type=tel placeholder="Eg. +1XXX-XXX-XXXX" required />
+            </ol>
+        </fieldset>
+        
+        <fieldset>
+            <legend>Credit Card Information</legend>
+            <ol>
+             <li>
+                <fieldset>
+                    <legend>Select Card</legend>
+                    <ol>
+                        <li>
+                            <input id=visa name=cardtype type=radio />
+                            <label for=visa>VISA</label>
+                        </li>
+                        
+                        <li>
+                            <input id=mastercard name=cardtype type=radio />
+                            <label for=mastercard>Mastercard</label>
+                        </li>
+                    </ol>
+                </fieldset>
+                </li>
+                <li>
+                    <label for=cardnumber>Card Number</label>
+                    <input id=cardnumber name=cardnumber type=number required />
+                </li>
+                <li>
+                    <label for=secure>Security Code</label>
+                    <input id=secure name=secure type=number required />
+                </li>
+                <li>
+                    <label for=namecard>Name on Card</label>
+                    <input id=namecard name=namecard type=text placeholder="Name on the card" required />
+                </li>
+            </ol>
+        </fieldset>
+        <fieldset>
+
+
+
+            <button type=submit>Submit</button>
+        </fieldset>
+    </form>
+</section>
+</body>
+</html>
+}
