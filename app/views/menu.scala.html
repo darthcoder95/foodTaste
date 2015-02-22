@@ -5,94 +5,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript">
-        var menu = {
-            "appetizers": [
-                {
-                    "name": "Chicken things",
-                    "description": "They're chicken things",
-                    "price": "3.95",
-                    "vegan": false,
-                    "vegetarian": false,
-                    "gluten_free": true
-                },
-                {
-                    "name": "Chicken things",
-                    "description": "A salad for the coolest dudes",
-                    "price": "4.95",
-                    "vegan": true,
-                    "vegetarian": true,
-                    "gluten_free": true
-                }
-            ],
-            "entrees": [
-                {
-                    "name": "Square bread",
-                    "description": "Square bread yo",
-                    "price": "18.00",
-                    "vegan": true,
-                    "vegetarian": true,
-                    "gluten_free": false
-                },
-                {
-                    "name": "Seven fish",
-                    "description": "More fish than average fish",
-                    "price": "22.00",
-                    "vegan": false,
-                    "vegetarian": false,
-                    "gluten_free": true
-                }
-            ]
-        }
-
-        function makeMenu(menu) {
-            var subSections = Object.keys(menu);
-            for (var i=0; i < subSections.length; i++) {
-                var subname = subSections[i];
-                $("document").append(subname + "<br />");
-                var sub = menu[subname];
-                console.log(sub);
-                for (var j = 0; j < menu[subname].length; j++ ) {
-                    genItem(sub[j]);
-                }
-            }
-        }
-        makeMenu(menu);
-
-        function genItem(item) {
-            var br = "<br />";
-            var divtext = "<div class=\"item\">";
-            divtext += item.name + br;
-            divtext += item.description + br;
-            divtext += item.price + br;
-            divtext += "</div>";
-            $(document).append(divtext);
-        }
-    </script>
-
     <style type="text/css">
-        .document {
-            width: 100%;
-            height: 100%;
-        }
         .item {
-            width: 300px;
-            height: 100%;
             border: 1px solid black;
-            border-radius: 5px;
-            float: top;
-            padding: 10px;
-        }
-        .button {
-            width: 100px;
-            height: 50px;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
 </head>
 <body>
-<div class="document"></div>
-<h1>Menu</h1>
+
+<div class="everything"></div>
+<script type="text/javascript">
+
+    var orders = [
+        {
+            "table": "3",
+            "people": "2",
+            "items": [
+                {
+                    "name": "chicken",
+                    "details": "spicy"
+                },
+                {
+                    "name": "steak",
+                    "details": "med rare"
+                }]
+        },
+        {
+            "table": "4",
+            "people": "5",
+            "items": [
+                {
+                    "name": "salmon",
+                    "details": "spicy"
+                },
+                {
+                    "name": "rice",
+                    "details": "steamed"
+                }]
+        }
+    ];
+
+    function parseOrders(orderList) {
+
+        for (var i = 0; i < orderList.length; i++) {
+            var o = orderList[i];
+            var table_list = o.table;
+            var people_list = o.people;
+            var divhtml1 = "<div class=\"table\"><h1>";
+            divhtml1 += table_list +=  "</h1></div>";
+            $(".everything").append(divhtml1);
+
+            var divhtml2 = "<div class=\"people\"><h2>";
+            divhtml2 += people_list += "</h2></div>";
+            $(".everything").append(divhtml2);
+
+            var item_list = o["items"];
+            for (var j = 0; j < item_list.length; j++) {
+                var item = item_list[j];
+                var divhtml3 = "<div class=\"items\"><h3>";
+                divhtml3 += item.name + "</h3><h4>";
+                divhtml3 += item.details += "</h4></div>";
+                $(".everything").append(divhtml3);
+
+            }
+        }
+    }
+    parseOrders(orders);
+
+</script>
 </body>
+
 </html>
 }
