@@ -1,0 +1,98 @@
+@(message: String)
+
+@main("Welcome to Play") {
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        var menu = {
+            "appetizers": [
+                {
+                    "name": "Chicken things",
+                    "description": "They're chicken things",
+                    "price": "3.95",
+                    "vegan": false,
+                    "vegetarian": false,
+                    "gluten_free": true
+                },
+                {
+                    "name": "Chicken things",
+                    "description": "A salad for the coolest dudes",
+                    "price": "4.95",
+                    "vegan": true,
+                    "vegetarian": true,
+                    "gluten_free": true
+                }
+            ],
+            "entrees": [
+                {
+                    "name": "Square bread",
+                    "description": "Square bread yo",
+                    "price": "18.00",
+                    "vegan": true,
+                    "vegetarian": true,
+                    "gluten_free": false
+                },
+                {
+                    "name": "Seven fish",
+                    "description": "More fish than average fish",
+                    "price": "22.00",
+                    "vegan": false,
+                    "vegetarian": false,
+                    "gluten_free": true
+                }
+            ]
+        }
+
+        function makeMenu(menu) {
+            var subSections = Object.keys(menu);
+            for (var i=0; i < subSections.length; i++) {
+                var subname = subSections[i];
+                $("document").append(subname + "<br />");
+                var sub = menu[subname];
+                console.log(sub);
+                for (var j = 0; j < menu[subname].length; j++ ) {
+                    genItem(sub[j]);
+                }
+            }
+        }
+        makeMenu(menu);
+
+        function genItem(item) {
+            var br = "<br />";
+            var divtext = "<div class=\"item\">";
+            divtext += item.name + br;
+            divtext += item.description + br;
+            divtext += item.price + br;
+            divtext += "</div>";
+            $(document).append(divtext);
+        }
+    </script>
+
+    <style type="text/css">
+        .document {
+            width: 100%;
+            height: 100%;
+        }
+        .item {
+            width: 300px;
+            height: 100%;
+            border: 1px solid black;
+            border-radius: 5px;
+            float: top;
+            padding: 10px;
+        }
+        .button {
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="document"></div>
+<h1>Menu</h1>
+</body>
+</html>
+}
