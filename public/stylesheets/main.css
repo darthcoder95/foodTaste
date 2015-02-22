@@ -5,7 +5,7 @@ html, body {
     margin: 0;
 }
 
-h1 {
+h1, h2, h3, h4 {
     margin: 0 auto 10px auto;
 }
 
@@ -23,16 +23,16 @@ a {
 .noselect {
     cursor: default;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
 }
 
 .mainhead {
     padding: 15% 0 15% 0;
-    color: #f47321;
+    color: #fcb040;
     width: 100%;
     height: 100%;
     text-align: center;
@@ -43,7 +43,7 @@ a {
 
 .head {
     padding: 5% 0 5% 0;
-    color: #f47321;
+    color: #fcb040;
     width: 100%;
     text-align: center;
     text-shadow: 5px 5px 15px #58585a;
@@ -69,4 +69,40 @@ a {
     position: absolute;
     bottom: 4px;
     right: 4px;
+}
+
+.course {
+    border: 4px double white;
+    border-radius: 10px;
+    background-color: #fcb040;
+    margin: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.menuItem {
+    border: 4px solid white;
+    border-radius: 10px;
+    color: black;
+    background-color: #fcec9a;
+    margin: 10px;
+    padding: 10px;
+}
+
+.itemDescription {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+}
+
+.orderButton {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: auto;
+    padding: 10px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+    border: 4px solid #c6c736;
+    border-radius: 30px;
+    background-color: #457d00;
+    color: white;
 }
