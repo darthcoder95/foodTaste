@@ -38,7 +38,7 @@ a {
     text-align: center;
     text-shadow: 5px 5px 15px #58585a;
     background-color: #58585a;
-    background: url("./img/restaurantbg.jpg");
+    background: url("../images/restaurantbg.jpg");
 }
 
 .head {
